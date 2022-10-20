@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+    
+        let pro=new Promise((resove,resject)=>{
+            setTimeout(()=>{
+                //成功回调 .then
+                 resove(1000)
+               //失败回调 .catch
+            //    resject("错误")
+            },1000)
+           
+        })
+        console.log(pro)
+        pro.then((res)=>{
+         console.log(pro)
+        console.log("成功回调",res)
+        return res
+        }).catch(err=>{console.log(err),console.dir(pro)})
+        
+    </script>
+</head>
+<body>
+    
+</body>
+</html>

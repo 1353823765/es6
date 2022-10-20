@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        function* gen() {
+            let data = yield new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("第一次数据")
+                    resolve("2s数据回来了")
+                }, 2000)
+            }
+            )
+            console.log(data)
+            let data1 = yield new Promise((resolve, reject) => {
+                setTimeout(() => {
+                    console.log("数据2"),
+                        resolve("3秒后数据回来了")
+                }, 3000)
+            })
+            console.log(data1)
+            let data2 = yield new Promise((resolve, reject) => {
+                setTimeout(() => { console.log("数据3"), resolve("4秒后数据回来了") }, 4000)
+            })
+            console.log(data2)
+        }
+        let gen1 = gen()
+        gen1.next().value.then(data => gen1.next(data).value.then(data1 => gen1.next(data1)
+      .value.then(data2 => gen1.next(data2))))
+    </script>
+</head>
+<body>
+</body>
+</html>
